@@ -1,0 +1,10 @@
+<h1>This is the Users Index Page</h1>
+
+<%= link_to "Add New User", {:action => 'new'} %><br><br>
+
+<% @users.each do |user| %>
+	<%= link_to user.name, user %><br>
+	Email: <%= user.email %><br>
+	Username: <%= user.username %><br>
+<% end %>
+

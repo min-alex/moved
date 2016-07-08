@@ -1,0 +1,18 @@
+<h1> <%= @user.name %></h1>
+
+Name: <%= @user.name %><br>
+Email: <%= @user.email %><br>
+Username: <%= @user.username %><br>
+Password: <%= @user.password %><br>
+
+<h2>Posts</h2>
+
+
+
+<%= link_to 'Back', {:action => 'index', :controller => 'users'} %>
+
+<%= link_to 'Edit', {:action => 'edit', :controller => 'users' } %>
+
+<%= link_to 'Delete User', @user, method: :delete %>
+
+<%= link_to 'Sign Out', {:action => 'destroy', :controller => 'sessions' } %>
