@@ -6,13 +6,19 @@ Username: <%= @user.username %><br>
 Password: <%= @user.password %><br>
 
 <h2>Posts</h2>
+<% @posts.each do |post| %>
+	Last Updated: <%= post.created_at %><br>
+	<%= post.content %><br>
+<% end %>
 
 
 
-<%= link_to 'Back', {:action => 'index', :controller => 'users'} %>
+<%= link_to 'Back', {:action => 'index', :controller => 'users'} %><br>
 
-<%= link_to 'Edit', {:action => 'edit', :controller => 'users' } %>
+<%= link_to 'Edit', {:action => 'edit', :controller => 'users' } %><br>
 
-<%= link_to 'Delete User', @user, method: :delete %>
+<%= link_to 'Delete User', @user, method: :delete %><br>
 
-<%= link_to 'Sign Out', {:action => 'destroy', :controller => 'sessions' } %>
+<%= link_to 'Sign Out', {:action => 'destroy', :controller => 'sessions' } %><br>
+
+<%= link_to 'Create Post', {:action => 'new', :controller => 'posts'} %><br>
