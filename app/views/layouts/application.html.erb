@@ -1,14 +1,49 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Moved</title>
+    <title>basic rails blog</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css?family=Heebo:100" rel="stylesheet">
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+		<nav>
+		  	<header id="lyt_header"><a href="/">Basic Rails Blog</a></header>
+			<ul>
+				<li><a href="/">Home</a></li>
+				<li><a href="/users">User List</a></li>
+				<li><a href="/feed">Feed</a></li>
+				<li>
+			  		<% if !session[:user_id] %>
+				  		<div id="login_home">
+					  		<%= form_tag :action => 'create', :controller => 'sessions' do %>
+
+								<label for="username"></label>
+								<%= text_field :session, 'username', :placeholder => 'username' %>
+
+								<label for="password"></label>
+								<%= text_field :session, 'password', :placeholder => 'password' %>
+								
+
+							  <%= submit_tag "Log in" %>
+							<% end %>
+						</div>
+					<% else %>
+						<div id="login_home" %>
+							<% user %>
+							<%= link_to session[:curr_user].username, user_url(session[:curr_user]) %>
+
+						</div>
+						<li><a href="/logout">Sign Out</a></li>
+					<% end %>
+				</li>
+			</ul>
+		</nav>
     <%= yield %>
+
+
   </body>
 </html>

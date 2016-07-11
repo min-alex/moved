@@ -1,8 +1,14 @@
-<h1>this is the home page</h1>
+<div class="home_index">
+	<h1>this is the home page</h1>
 
-<%= link_to "Go to users index", {:action => "index", :controller => "users"} %>
+	<p>
+	  <%= flash[:success] unless flash[:success].blank? %>
+	  <%= flash[:error] unless flash[:error].blank? %>
+	</p>
+
+	<%= link_to "Sign In", {:action => 'new', :controller => 'sessions'} %><br>
+
+	<%= link_to "Sign Up", {:action => 'new', :controller => 'users'} %><br>
 
 
-<%= link_to "Sign Up", {:action => 'new', :controller => 'users'} %><br>
-
-<%= link_to "Sign In", {:action => 'new', :controller => 'sessions'} %>
+</div>

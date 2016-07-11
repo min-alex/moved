@@ -1,24 +1,67 @@
-<h1> <%= @user.name %></h1>
+<div  class="profile_col">
+	<h1> <%= @user.name %></h1>
 
-Name: <%= @user.name %><br>
-Email: <%= @user.email %><br>
-Username: <%= @user.username %><br>
-Password: <%= @user.password %><br>
-
-<h2>Posts</h2>
-<% @posts.each do |post| %>
-	Last Updated: <%= post.created_at %><br>
-	<%= post.content %><br>
-<% end %>
+	Name: <%= @user.name %><br>
+	Email: <%= @user.email %><br>
+	Username: <%= @user.username %><br><br>
+	<% if @permissions == true %>
 
 
+		<%= link_to 'Edit', {:action => 'edit', :controller => 'users' } %><br>
+		<%= link_to 'Delete User', @user, method: :delete %><br>
 
-<%= link_to 'Back', {:action => 'index', :controller => 'users'} %><br>
+		<%= link_to 'Sign Out', {:action => 'destroy', :controller => 'sessions' } %><br>
 
-<%= link_to 'Edit', {:action => 'edit', :controller => 'users' } %><br>
+	<% else %>
+		<%= link_to 'Sign In New User', login_path %>
+	<% end %>
+</div>
 
-<%= link_to 'Delete User', @user, method: :delete %><br>
+<div class="posts_col">
+	<h2>Posts</h2>
+	<% if @permissions == true %>
+		
+		<%= form_tag url_for(:action => 'create', :controller => 'posts'), :method => 'post' do %>
+			<p><label for = "post"></label>
+			<%= text_field_tag 'content', nil, :placeholder => 'post content' %>
+			
+			<input name="user_id" type="hidden" value=<%= @user.id %> />
 
-<%= link_to 'Sign Out', {:action => 'destroy', :controller => 'sessions' } %><br>
+			<%= submit_tag 'Post' %></p>
+		<% end %>
+		---------------------------------<br><br>
+	<% end %>
 
-<%= link_to 'Create Post', {:action => 'new', :controller => 'posts'} %><br>
+
+
+	<% @posts.reverse_each do |post| %>
+
+		at <i><%= post.updated_at %><br> </i>
+		<%= post.content %><br><br>
+
+		<% post.comments.each do |comment| %>
+			<% if comment.commentBy %>
+				<%= comment.commentBy %>
+			<% else %>
+				<i>anonymous</i>
+			<% end %>
+			 commented<br> >>  <%= comment.content %><br>
+		<% end %>
+		<%= form_tag url_for(:action => 'create', :controller => 'comments'), :method => 'post' do %>
+			<p><label for = "comment"></label>
+			<%= text_field :comments, 'content', :placeholder => 'comment' %>
+
+			<input name="post_id" type="hidden" value=<%=post.id%> />
+			<% if session[:user_id] %>
+				<input name="commentBy" type="hidden" value=<%=User.find(session[:user_id]).name%> />
+			<% end %>
+
+			<%= submit_tag 'Comment' %></p>
+		<% end %>
+
+		---------------------------------<br><br>
+	<% end %>
+
+
+
+</div>

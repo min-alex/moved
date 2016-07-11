@@ -1,10 +1,9 @@
 <%= form_tag :action => 'create' do %>
 
-	<p><label for="content"> Content: </label>
-	<%= text_area :posts, 'content' %></p>
-
+	<p><label for = "content">Content</label>:
+	<%= text_field :posts, 'content' %></p>
+	
 	<%= submit_tag "Post" %>
-
 <% end %>
 
-<%= link_to 'Back', {:action => 'index', :controller => 'users'} %>
+<%= link_to 'Back', url_for(:back) %>

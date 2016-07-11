@@ -3,18 +3,18 @@ class PostsController < ApplicationController
 	end
 
 	def new
-		Post.new
+		@post = Post.new
 	end
 
 	def create
-		Post.create(content: params[:content], user_id: session[:id])
+		@curr_user = User.find(session[:user_id])
 
-		redirect_to root_path
-	end
+		Post.create(
+			content: params[:content], 
+			user_id: session[:user_id]
+		)
 
-	def post_params
-		# params.require(:posts).permit(:content,)
-		# params[:user_id] = session[:user_id]
+		redirect_to :back
 	end
 
 end

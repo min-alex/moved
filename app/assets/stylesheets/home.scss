@@ -1,3 +1,147 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+body {
+	margin: 0;
+	padding-top: 50px;
+  font-family: 'Heebo', sans-serif;
+}
+
+nav {
+  background-color:rgba(128,128,128, 0.8);
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  min-width: 600px;
+  line-height: 2.5em;
+  height: 40px;
+}
+
+nav header {
+  position: absolute;
+  top: 0;
+  left: 2%;
+  font-size: 30px;
+}
+
+nav header a {
+  text-decoration: none;
+  color: black
+}
+
+nav ul {
+  position: absolute;
+
+  top: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+
+}
+
+nav li {
+  position: relative;
+  height: 40px;
+  top: 0;
+  margin: 0;
+  display: inline-block;
+  list-style: none;
+}
+
+li a {
+  display: block;
+  height: 40px;
+  color: black;
+  text-align: center;
+  padding: 0 15px;
+  text-decoration: none;
+}
+
+li a:hover {
+	background-color: aliceblue
+}
+
+#login_home {
+	display: inline;
+	position: relative;
+	text-align: right;
+	width: 100%;
+	right: 0;
+}
+
+.profile_col {
+	position: fixed;
+	padding-left: 10px;
+	float: left;
+	height: 100%;
+	width: 20%;
+	min-width: 250px;
+	top: 50px;
+	bottom: 0;
+}
+
+.profile_col a {
+  text-decoration: none;
+  color: black;
+}
+
+.profile_col a:hover {
+  color: gray;
+}
+
+.posts_col {
+	position: absolute;
+	padding-left: 10px;
+	width: 600px;
+	left: 250px;
+	border-left-style: solid;
+	border-left-width: 1px;
+}
+
+.feed_page {
+  height: 100%;
+  width: 50%;
+  min-width: 500px;
+  margin: auto;
+  padding: 0 10px;
+  border-left-style: solid;
+  border-right-style: solid;
+  border-width: 1px;
+}
+
+
+
+.user_link a {
+  text-decoration: none;
+  color: black;
+}
+
+.user_link a:hover {
+  color: gray;
+}
+
+.users_list {
+  top: 50px;
+  left: 0;
+  height: 100%;
+  width: 500px;
+  margin: auto;
+  border-left-style: solid;
+  border-right-style: solid;
+  border-width: 1px;
+  padding: 0 10px;
+}
+
+.users_list a {
+  text-decoration: none;
+  color: gray;
+}
+
+.home_index {
+  position: absolute;
+  width: 500px;
+  margin-left: 10px;
+}

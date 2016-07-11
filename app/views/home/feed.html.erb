@@ -1,0 +1,38 @@
+<div class="feed_page">
+<h1>Feed</h1>
+
+<% @posts.reverse_each do |post| %>
+	<% if post.user %>
+		<div class="user_link">
+			<%= link_to post.user.name, user_url(post.user) %>
+		</div>
+	<% else %>
+		<i>anonymous</i><br>
+	<% end %>
+
+	at <i><%= post.updated_at %><br> </i>
+	<%= post.content %><br><br>
+
+	<% post.comments.each do |comment| %>
+		<% if comment.commentBy %>
+			<%= comment.commentBy %>
+		<% else %>
+			<i>anonymous</i>
+		<% end %>
+		 commented<br> >>  <%= comment.content %><br>
+	<% end %>
+	<%= form_tag url_for(:action => 'create', :controller => 'comments'), :method => 'post' do %>
+		<p><label for = "comment"></label>
+		<%= text_field :comments, 'content', :placeholder => 'comment' %>
+
+		<input name="post_id" type="hidden" value=<%=post.id%> />
+		<% if session[:user_id] %>
+			<input name="commentBy" type="hidden" value=<%=User.find(session[:user_id]).name%> />
+		<% end %>
+
+		<%= submit_tag 'Comment' %></p>
+	<% end %>
+
+	---------------------------------<br><br>
+	<% end %>
+</div>

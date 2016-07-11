@@ -1,1 +1,19 @@
 <h1> Editing <%= @user.name %>'s Page</h1>
+
+<%= form_tag url_for(:action => 'update', :controller => 'users'), :method => 'patch' do %>
+	<p><label for = "name">Name</label>:
+	<%= text_field :users, 'name', :value => @user.name %></p>
+
+	<p><label for = "email">Email</label>:
+	<%= text_field :users, 'email', :value => @user.email %></p>
+
+	<p><label for = "username">Username</label>:
+	<%= text_field :users, 'username', :value => @user.username %></p>
+
+	<p><label for = "password">password</label>:
+	<%= text_field :users, 'password', :value => @user.password %></p>
+
+	<input name="_method" type="hidden" value="patch" />
+
+	<%= submit_tag "Update" %>
+<% end %>
